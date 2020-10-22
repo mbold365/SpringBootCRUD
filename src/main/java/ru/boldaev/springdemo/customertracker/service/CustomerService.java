@@ -1,11 +1,10 @@
-package ru.boldaev.springdemo.customertracker.Service;
+package ru.boldaev.springdemo.customertracker.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.boldaev.springdemo.customertracker.model.Customer;
 import ru.boldaev.springdemo.customertracker.repository.CustomerRepository;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
