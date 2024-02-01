@@ -1,43 +1,19 @@
 package ru.boldaev.springdemo.customertracker.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import ru.boldaev.springdemo.customertracker.model.Customer;
-import ru.boldaev.springdemo.customertracker.repository.CustomerRepository;
 
 import java.util.List;
 
-@Service
-public class CustomerService {
+public interface CustomerService {
 
-    private final CustomerRepository customerRepository;
+    List<Customer> findAll();
 
-    @Autowired
-    public CustomerService(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
+    Customer findById(Long id);
 
-    public List<Customer> findAll() {
-        return customerRepository.findAll();
-    }
+    void saveOrUpdate(Customer customer);
 
-    public Customer findById(Long id) {
-        return customerRepository.getOne(id);
-    }
+    void delete(Long id);
 
-    public void saveOrUpdate(Customer customer) {
-        customerRepository.save(customer);
-    }
+    List<Customer> findByName(String name);
 
-    public void delete(Long id) {
-        customerRepository.deleteById(id);
-    }
-
-    public List<Customer> findByName(String name) {
-
-        if (name != null && name.trim().length() > 0) {
-            return customerRepository.findByName(name.toLowerCase().trim());
-        }
-        return customerRepository.findAll();
-    }
 }
