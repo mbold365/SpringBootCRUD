@@ -1,5 +1,6 @@
 package ru.boldaev.springdemo.customertracker.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import ru.boldaev.springdemo.customertracker.model.Customer;
 import javax.validation.Valid;
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
@@ -34,7 +36,7 @@ public class CustomerController {
 
     @GetMapping("/list")
     public String findAll(Model model) {
-
+        log.info("bla bla bla");
         List<Customer> customers = customerService.findAll();
 
         model.addAttribute("customers", customers);
@@ -44,7 +46,7 @@ public class CustomerController {
 
     @GetMapping("/newCustomer")
     public String showFormForAdd(Model model) {
-
+        log.info("bla bla bla");
         Customer customer = new Customer();
 
         model.addAttribute(customer);
@@ -54,7 +56,7 @@ public class CustomerController {
 
     @PostMapping("/saveCustomer")
     public String saveCustomer(@Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult) {
-
+        log.info("bla bla bla");
         System.out.println("Binding result: " + bindingResult);
 
         if (bindingResult.hasErrors()) {
@@ -67,7 +69,7 @@ public class CustomerController {
 
     @GetMapping("/delete")
     public String deleteCustomer(@RequestParam("id") Long id) {
-
+        log.info("bla bla bla");
         customerService.delete(id);
 
         return "redirect:/customer/list";
@@ -75,7 +77,7 @@ public class CustomerController {
 
     @GetMapping("/update")
     public String showFormForUpdate(@RequestParam("id") Long id, Model model) {
-
+        log.info("bla bla bla");
         Customer customer = customerService.findById(id);
 
         model.addAttribute(customer);
@@ -85,7 +87,7 @@ public class CustomerController {
 
     @GetMapping("/search")
     public String searchCustomers(@RequestParam("searchName") String searchName, Model model) {
-
+        log.info("bla bla bla");
         List<Customer> customers = customerService.findByName(searchName);
 
         model.addAttribute("customers", customers);
